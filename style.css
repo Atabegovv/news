@@ -215,3 +215,32 @@ body{
     top: 10px;
     left: 5px;
 }
+
+footer{
+    margin-top: 135px;
+    padding: 30px 0 50px;
+    background-color: var(--color-text);
+}
+
+.footer__nav .nav__logo{
+    grid-column: span 2;
+}
+
+.footer__nav .nav__link{
+    color: var(--color-white);
+}
+
+.footer__nav .nav__link--active,
+.footer__nav .nav__link:hover{
+    color: var(--color-accent);
+}
+
+.footer__col{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 500;
+    color: var(--color-grey);
+}
