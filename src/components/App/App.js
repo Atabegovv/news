@@ -1,69 +1,12 @@
-const categoryIds = {
-    index: 0,
-    technologies: 1,
-    sport: 2,
-    fashion: 3,
-    other: 5,
-};
+import React from "react";
+import Navigation from "../Navigation/Navigation.js";
+import Articles from "../Articles/Articles.js";
+import { categoryIds } from "../utils.js";
+import MainArticle from "../MainArticle/MainArticle";
+import SmallArticle from "../SmallArticle/SmallArticle";
+import "./App.css";
+import "../common.css";
 
-
-const Navigation = ({onNavClick, currentCategory, className=""}) => {
-    return (
-        <nav className={`nav grid ${className}`}>
-            <a href="#" className="nav__logo" date-href="index">
-                <img className="nav__logo-img" src="./images/logo.svg" alt="логотип"/>
-            </a>
-            <ul className="nav__list">
-                {['Главная', 'Мода', 'Технологии', 'Спорт', 'Другие'].map((item) => {
-                    return (
-                        <li className="nav__item" key={item}>
-                            <a
-                                onClick={onNavClick}
-                                className={`nav__link ${currentCategory === item ? "nav__link--active" : ""}`}
-                                data-href={item}
-                                href="#"
-                            >
-                                {item}
-                            </a>
-                        </li>
-                    )
-                })}
-            </ul>
-        </nav>
-    )
-}
-
-
-const MainArticle = ({title, image, description, category, source}) => {
-    return (
-        <article className="main-article">
-            <div className="main-article__img">
-                <img src={image} alt="изображение новости"/>
-            </div>
-            <div className="main-article__content">
-                <h4 className="main-article__category">{category}</h4>
-                <h2 className="main-article__title line-limit">{title}</h2>
-                <p className="main-article__text line-limit">{description}</p>
-                <span className="main-article__src">{source}</span>
-            </div>
-        </article>
-    )
-}
-
-
-const SmallArticle = ({title, source, date}) => {
-    return (
-        <article className="small-article">
-            <h2 className="small-article__title line-limit">{title}</h2>
-            <div className="small-article__caption">
-                <p className="small-article__date">
-                    {new Date(date).toLocaleDateString('ru-RU', {month: 'long', day: 'numeric'})}
-                </p>
-                <span className="small-article__src">{source}</span>
-            </div>
-        </article>
-    )
-}
 
 const App = () => {
     const [category, setCategory] = React.useState('index');
@@ -82,7 +25,7 @@ const App = () => {
             })
     }, [category])
 
-    console.log(articles)
+    console.log(category)
 
     return (
         <React.Fragment>
@@ -98,8 +41,8 @@ const App = () => {
             <main className="articles main">
                 <div className="container grid">
                     <section className="articles__big-col">
-                        {articles.items.slice(0, 6).map((item) => {
-                            return(
+                        {articles.items.slice(0, 3).map((item) => {
+                            return (
                                 <MainArticle
                                     key={item.title}
                                     title={item.title}
@@ -112,7 +55,7 @@ const App = () => {
                         })}
                     </section>
                     <section className="articles__small-col">
-                        {articles.items.slice(0, 16).map((item) => {
+                        {articles.items.slice(3, 10).map((item) => {
                             return (
                                 <SmallArticle
                                     key={item.title}
@@ -125,6 +68,7 @@ const App = () => {
                     </section>
                 </div>
             </main>
+
 
             <footer className="footer">
                 <div className="container">
@@ -141,6 +85,6 @@ const App = () => {
             </footer>
         </React.Fragment>
     )
-}
+};
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export default App;
