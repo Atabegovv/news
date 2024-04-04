@@ -1,9 +1,9 @@
 {
   "homepage": "https://atabegovv.github.io/news",
   "scripts": {
-    "start": "webpack serve",
+    "start": "NODE_ENV=development webpack serve",
     "build": "webpack",
-    "predeploy": "webpack",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
