@@ -18,7 +18,7 @@ const App = () => {
     }
 
     React.useEffect(() => {
-        fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[category] || '')
+        fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + (categoryIds[category] || ''))
             .then(response => response.json())
             .then((response) => {
                 setArticles(response);
@@ -38,36 +38,9 @@ const App = () => {
                 </div>
             </header>
 
-            <main className="articles main">
-                <div className="container grid">
-                    <section className="articles__big-col">
-                        {articles.items.slice(0, 3).map((item) => {
-                            return (
-                                <MainArticle
-                                    key={item.title}
-                                    title={item.title}
-                                    image={item.image}
-                                    description={item.description}
-                                    category={articles.categories.find((categoryItem) => categoryItem.id === item.category_id).name}
-                                    source={articles.sources.find((sourceItem) => sourceItem.id === item.source_id).name}
-                                />
-                            )
-                        })}
-                    </section>
-                    <section className="articles__small-col">
-                        {articles.items.slice(3, 10).map((item) => {
-                            return (
-                                <SmallArticle
-                                    key={item.title}
-                                    title={item.title}
-                                    date={item.date}
-                                    source={articles.sources.find((sourceItem) => sourceItem.id === item.source_id).name}
-                                />
-                            )
-                        })}
-                    </section>
-                </div>
-            </main>
+            <Articles
+                articles={articles}
+            />
 
 
             <footer className="footer">

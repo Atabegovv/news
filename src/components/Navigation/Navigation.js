@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navigation.css"
 import logo from "../../images/logo.svg"
+import { categoryNames } from "../utils";
 const Navigation = ({onNavClick, currentCategory, className=""}) => {
     return (
         <nav className={`nav grid ${className}`}>
@@ -8,7 +9,7 @@ const Navigation = ({onNavClick, currentCategory, className=""}) => {
                 <img className="nav__logo-img" src={logo} alt="логотип"/>
             </a>
             <ul className="nav__list">
-                {['Главная', 'Мода', 'Технологии', 'Спорт', 'Другие'].map((item) => {
+                {['index', 'fashion', 'technologies', 'sport', 'other'].map((item) => {
                     return (
                         <li className="nav__item" key={item}>
                             <a
@@ -17,7 +18,7 @@ const Navigation = ({onNavClick, currentCategory, className=""}) => {
                                 data-href={item}
                                 href="#"
                             >
-                                {item}
+                                {categoryNames[item]}
                             </a>
                         </li>
                     )
