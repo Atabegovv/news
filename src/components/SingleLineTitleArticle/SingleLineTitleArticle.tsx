@@ -1,7 +1,15 @@
-import React from "react";
+import React, {FC} from "react";
 import './SingleLineTitleArticle.css';
 
-export const SingleLineTitleArticle = () => {
+interface Props {
+    image: string;
+    title: string;
+    text: string;
+    category: string;
+    source: string;
+    onClick: (event: React.MouseEvent<HTMLElement>) => void;
+}
+export const SingleLineTitleArticle: FC<Props> = () => {
     return (
         <article className="single-line-title-article">
             <img className="single-line-title-article__image" src="https://cojo.ru/wp-content/uploads/2022/12/stich-2-1.webp" alt={"изображение новости"} />

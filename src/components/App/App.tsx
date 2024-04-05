@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
 import Articles from "../Articles/Articles";
-import {Article} from "../Article/Article";
+import {ArticleItem} from "../ArticleItem/ArticleItem";
 import { categoryIds } from "../../utils";
 import "./App.css";
 import "../../common.css";
@@ -48,7 +48,7 @@ const App = () => {
             </header>
 
             { articleId !== null
-                ? <Article />
+                ? <ArticleItem id={articleId} categories={articles.categories} sources={articles.sources} onArticleClick={onArticleClick} />
                 : <Articles articles={articles} onArticleClick={onArticleClick} />
             }
 

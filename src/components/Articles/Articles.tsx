@@ -19,7 +19,7 @@ const Articles: FC<Props> = ({articles, onArticleClick }) => {
                         const source = articles.sources.find((sourceItem) => sourceItem.id === item.source_id);
                         return (
                             <MainArticle
-                                key={item.title}
+                                key={item.id}
                                 title={item.title}
                                 image={item.image}
                                 description={item.description}
@@ -35,7 +35,7 @@ const Articles: FC<Props> = ({articles, onArticleClick }) => {
                         const source = articles.sources.find((sourceItem) => sourceItem.id === item.source_id);
                         return (
                             <SmallArticle
-                                key={item.title}
+                                key={item.id}
                                 title={item.title}
                                 date={item.date}
                                 source={source?.name || ''}

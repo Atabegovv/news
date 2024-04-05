@@ -1,7 +1,14 @@
-import React from "react";
+import React, {FC} from "react";
 import './RelatedSmallArticle.css';
 
-export const RelatedSmallArticle = () => {
+interface Props {
+    image: string;
+    title: string;
+    category: string;
+    source: string;
+    onClick: (event: React.MouseEvent<HTMLElement>) => void;
+}
+export const RelatedSmallArticle: FC<Props> = () => {
     return (
         <article className="related-small-article">
             <img className="related-small-article__image" src="https://cojo.ru/wp-content/uploads/2022/12/stich-2-1.webp" alt={"изображение новости"} />
