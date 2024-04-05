@@ -1,31 +1,36 @@
 import React from "react";
-import Navigation from "../Navigation/Navigation.js";
-import Articles from "../Articles/Articles.js";
+import Navigation from "../Navigation/Navigation";
+import Articles from "../Articles/Articles";
 import {Article} from "../Article/Article";
-import { categoryIds } from "../utils.js";
+import { categoryIds } from "../../utils";
 import "./App.css";
-import "../common.css";
+import "../../common.css";
+import {NewsAPI} from "../../types";
 
 
 const App = () => {
-    const [articleId, setArticleId] = React.useState(null);
+    const [articleId, setArticleId] = React.useState<number | null>(null);
     const [category, setCategory] = React.useState('index');
-    const [articles, setArticles] = React.useState({items: [], categories: [], sources: []});
+    const [articles, setArticles] = React.useState<NewsAPI>({items: [], categories: [], sources: []});
 
-    const onNavClick = (e) => {
+    const onNavClick = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         setArticleId(null);
-        setCategory(e.currentTarget.dataset.href)
+        const category = e.currentTarget.dataset.href;
+        if (category){
+            setCategory(category);
+        }
     }
 
-    const onArticleClick = (id) => {
+    const onArticleClick = (id: number) => {
         setArticleId(id);
     }
 
     React.useEffect(() => {
+        //@ts-ignore
         fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + (categoryIds[category] || ''))
             .then(response => response.json())
-            .then((response) => {
+            .then((response: NewsAPI) => {
                 setArticles(response);
             })
     }, [category])

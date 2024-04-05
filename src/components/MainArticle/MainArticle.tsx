@@ -1,6 +1,15 @@
-import React from "react";
+import React, {FC} from "react";
 import "./MainArticle.css"
-const MainArticle = ({title, image, description, category, source, onClick}) => {
+
+interface Props {
+    title: string;
+    image: string;
+    description: string;
+    category: string;
+    source: string;
+    onClick: (event: React.MouseEvent<HTMLElement>) => void;
+}
+const MainArticle: FC<Props> = ({title, image, description, category, source, onClick}) => {
     return (
         <article className="main-article" onClick={onClick}>
             <div className="main-article__img">
