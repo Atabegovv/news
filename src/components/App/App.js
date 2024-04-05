@@ -1,20 +1,25 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation.js";
 import Articles from "../Articles/Articles.js";
+import {Article} from "../Article/Article";
 import { categoryIds } from "../utils.js";
-import MainArticle from "../MainArticle/MainArticle";
-import SmallArticle from "../SmallArticle/SmallArticle";
 import "./App.css";
 import "../common.css";
 
 
 const App = () => {
+    const [articleId, setArticleId] = React.useState(null);
     const [category, setCategory] = React.useState('index');
     const [articles, setArticles] = React.useState({items: [], categories: [], sources: []});
 
     const onNavClick = (e) => {
         e.preventDefault();
+        setArticleId(null);
         setCategory(e.currentTarget.dataset.href)
+    }
+
+    const onArticleClick = (id) => {
+        setArticleId(id);
     }
 
     React.useEffect(() => {
@@ -25,7 +30,6 @@ const App = () => {
             })
     }, [category])
 
-    console.log(category)
 
     return (
         <React.Fragment>
@@ -38,10 +42,10 @@ const App = () => {
                 </div>
             </header>
 
-            <Articles
-                articles={articles}
-            />
-
+            { articleId !== null
+                ? <Article />
+                : <Articles articles={articles} onArticleClick={onArticleClick} />
+            }
 
             <footer className="footer">
                 <div className="container">

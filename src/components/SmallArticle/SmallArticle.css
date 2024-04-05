@@ -2,6 +2,7 @@
     grid-column: 10/-1;
     padding-left: 10px;
     border-left: 10px solid var(--color-text);
+    cursor: pointer;
 }
 
 .small-article__title{

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(9, var(--grid-col-width));
     gap: 20px;
+    cursor: pointer;
 }
 
 .main-article__img{
