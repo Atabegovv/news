@@ -8,14 +8,14 @@ interface Props {
     source: string;
     onClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
-export const RelatedSmallArticle: FC<Props> = () => {
+export const RelatedSmallArticle: FC<Props> = ({ image, title, category, source, onClick}) => {
     return (
-        <article className="related-small-article">
-            <img className="related-small-article__image" src="https://cojo.ru/wp-content/uploads/2022/12/stich-2-1.webp" alt={"изображение новости"} />
+        <article className="related-small-article" onClick={onClick}>
+            <img className="related-small-article__image" src={image} alt={"изображение новости"}/>
             <div className="related-small-article__content">
-                <span className="article-category related-small-article__category">Мода</span>
-                <h2 className="related-small-article__title">Это слова-филлеры для этой новости можно одну строку, а тут даже две или три влезет</h2>
-                <span className="article-source related-small-article__source">Источник</span>
+                <span className="article-category related-small-article__category">{category}</span>
+                <h2 className="related-small-article__title">{title}</h2>
+                <span className="article-source related-small-article__source">{source}</span>
             </div>
         </article>
     );
