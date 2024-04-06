@@ -1,6 +1,6 @@
-import React, {FC} from "react";
-import "./SmallArticle.css";
-import {beautifulDate} from "../../types";
+import React, { FC } from 'react';
+import './SmallArticle.css';
+import { beautifulDate } from '../../types';
 
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
     date: string;
     onClick: (event: React.MouseEvent<HTMLElement>) => void;
 }
-const SmallArticle: FC<Props> = ({title, source, date, onClick}) => {
+const SmallArticle: FC<Props> = ({ title, source, date, onClick }) => {
     return (
         <article className="small-article" onClick={onClick}>
             <h2 className="small-article__title line-limit">{title}</h2>

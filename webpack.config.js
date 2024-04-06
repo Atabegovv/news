@@ -1,12 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: process.env.NODE_ENV || "production",
-    entry: "./src/script.tsx",
+    mode: process.env.NODE_ENV || 'production',
+    entry: './src/script.tsx',
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.[contenthash].js",
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.[contenthash].js',
     },
     module: {
         rules: [{
@@ -18,7 +18,7 @@ module.exports = {
             use: ['style-loader', 'css-loader'],
         }, {
             test: /\.svg$/,
-            type: "asset/resource",
+            type: 'asset/resource',
         }, {
             test: /\.(ts|tsx)$/,
             use: 'ts-loader',
@@ -29,7 +29,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     plugins: [new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: './src/index.html',
     })],
     devServer: {
         open: true,

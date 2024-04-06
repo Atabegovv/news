@@ -7,9 +7,9 @@ export const categoryIds = {
 };
 
 export const categoryNames = {
-    index: "Главная",
-    fashion: "Мода",
-    technologies: "Технологии",
-    sport: "Спорт",
-    other: "Другие",
+    index: 'Главная',
+    fashion: 'Мода',
+    technologies: 'Технологии',
+    sport: 'Спорт',
+    other: 'Другие',
 };

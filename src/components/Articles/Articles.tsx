@@ -1,15 +1,15 @@
-import React, {FC} from "react";
-import MainArticle from "../MainArticle/MainArticle";
-import SmallArticle from "../SmallArticle/SmallArticle";
-import "./Articles.css";
-import {NewsAPI} from "../../types";
+import React, { FC } from 'react';
+import MainArticle from '../MainArticle/MainArticle';
+import SmallArticle from '../SmallArticle/SmallArticle';
+import './Articles.css';
+import { NewsAPI } from '../../types';
 
 interface Props {
     articles: NewsAPI;
     onArticleClick: (id: number) => void;
 }
 
-const Articles: FC<Props> = ({articles, onArticleClick }) => {
+const Articles: FC<Props> = ({ articles, onArticleClick }) => {
     return (
         <main className="articles main">
             <div className="container grid">

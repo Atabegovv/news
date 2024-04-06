@@ -44,5 +44,5 @@ export interface RelatedArticlesAPI {
 }
 
 export const beautifulDate = (date: string):string => {
-    return  new Date(date).toLocaleDateString('ru-RU', {month: 'long', day: 'numeric'});
+    return  new Date(date).toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' });
 }

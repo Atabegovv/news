@@ -1,14 +1,14 @@
-import React, {FC} from "react";
-import "./Navigation.css"
-import logo from "../../images/logo.svg"
-import { categoryNames } from "../../utils";
+import React, { FC } from 'react';
+import './Navigation.css'
+import logo from '../../images/logo.svg'
+import { categoryNames } from '../../utils';
 
 interface Props {
     onNavClick: (event: React.MouseEvent<HTMLElement>) => void;
     currentCategory: string;
     className?: string;
 }
-const Navigation: FC<Props> = ({onNavClick, currentCategory, className=""}) => {
+const Navigation: FC<Props> = ({ onNavClick, currentCategory, className='' }) => {
     return (
         <nav className={`nav grid ${className}`}>
             <a href="#" className="nav__logo" data-href="index">
@@ -20,7 +20,7 @@ const Navigation: FC<Props> = ({onNavClick, currentCategory, className=""}) => {
                         <li className="nav__item" key={item}>
                             <a
                                 onClick={onNavClick}
-                                className={`nav__link ${currentCategory === item ? "nav__link--active" : ""}`}
+                                className={`nav__link ${currentCategory === item ? 'nav__link--active' : ''}`}
                                 data-href={item}
                                 href="#"
                             >

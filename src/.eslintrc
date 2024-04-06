@@ -18,8 +18,17 @@
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
 
-    "quotes": "off",
-    "typescript-eslint/quotes": ["error", "single"],
+    "quotes": ["error", "single"],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+
+    "@typescript-eslint/ban-ts-comment": "off",
 
     "object-curly-spacing": "off",
     "@typescript-eslint/object-curly-spacing": ["error", "always"],

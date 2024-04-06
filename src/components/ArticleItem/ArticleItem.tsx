@@ -1,8 +1,8 @@
-import React, {FC} from "react";
+import React, { FC } from 'react';
 import './ArticleItem.css';
-import { RelatedSmallArticle } from "../RelatedSmallArticle/RelatedSmallArticle";
-import { SingleLineTitleArticle } from "../SingleLineTitleArticle/SingleLineTitleArticle";
-import {Article, ArticleItemAPI, beautifulDate, Category, RelatedArticlesAPI, Source} from "../../types";
+import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle';
+import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
+import { Article, ArticleItemAPI, beautifulDate, Category, RelatedArticlesAPI, Source } from '../../types';
 
 interface Props {
     id: number;
@@ -80,8 +80,8 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                                     key={item.id}
                                     title={item.title}
                                     image={item.image}
-                                    category={category?.name || ""}
-                                    source={source?.name || ""}
+                                    category={category?.name || ''}
+                                    source={source?.name || ''}
                                     onClick={() => onArticleClick(item.id)}
                                 />
                             );
@@ -105,8 +105,8 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                                     title={item.title}
                                     image={item.image}
                                     text={item.description}
-                                    category={category?.name || ""}
-                                    source={source?.name || ""}
+                                    category={category?.name || ''}
+                                    source={source?.name || ''}
                                     onClick={() => onArticleClick(item.id)}
                                 />
                             );
