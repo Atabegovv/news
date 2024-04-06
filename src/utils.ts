@@ -1,4 +1,4 @@
-export const categoryIds = {
+export const categoryIds: { [index: string]: number } = {
     index: 0,
     technologies: 1,
     sport: 2,
@@ -6,7 +6,7 @@ export const categoryIds = {
     other: 5,
 };
 
-export const categoryNames = {
+export const categoryNames: { [index: string]: string } = {
     index: 'Главная',
     fashion: 'Мода',
     technologies: 'Технологии',
