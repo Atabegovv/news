@@ -1,14 +1,14 @@
-.nav__logo{
+.nav__logo {
     grid-column: span 4;
     padding-right: 60px;
     height: 90px;
 }
 
-.nav__logo-img{
+.nav__logo-img {
     width: 100%;
 }
 
-.nav__list{
+.nav__list {
     grid-column: 5/-1;
     display: flex;
     justify-content: end;
@@ -18,7 +18,7 @@
     margin-left: 65px;
 }
 
-.nav__link{
+.nav__link {
     font-size: 22px;
     line-height: 28px;
     font-weight: 900;
@@ -26,10 +26,10 @@
     text-transform: uppercase;
 }
 
-.nav__link:hover{
+.nav__link:hover {
     color: var(--color-accent);
 }
 
-.nav__link--active{
+.nav__link--active {
     color: var(--color-accent);
 }

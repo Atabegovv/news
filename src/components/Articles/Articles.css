@@ -1,11 +1,11 @@
-.articles__big-col{
+.articles__big-col {
     grid-column: span 9;
     display: flex;
     flex-direction: column;
     gap: 50px;
 }
 
-.articles__small-col{
+.articles__small-col {
     grid-column: 10/-1;
     display: flex;
     flex-direction: column;
