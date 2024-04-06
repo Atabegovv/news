@@ -6,7 +6,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
-    "eslint-fix": "eslint --ext .js,.jsx,.ts,.tsx ./ --fix"
+    "eslint-fix": "eslint --ext .js,.jsx,.ts,.tsx ./ --fix",
+    "prettier-check": "prettier \"{**/*,*}.{js,jsx,ts,tsx}\" --check",
+    "prettier": "prettier \"{**/*,*}.{js,jsx,ts,tsx}\" --write"
   },
   "dependencies": {
     "@babel/cli": "^7.24.1",
@@ -31,11 +33,13 @@
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.34.1",
     "globals": "^15.0.0",
+    "prettier": "^3.2.5",
     "ts-loader": "^9.5.1",
     "typescript": "^5.4.4",
     "typescript-eslint": "^7.5.0"

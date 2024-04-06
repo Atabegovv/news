@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './MainArticle.css'
+import './MainArticle.css';
 
 interface Props {
     title: string;
@@ -13,7 +13,7 @@ const MainArticle: FC<Props> = ({ title, image, description, category, source, o
     return (
         <article className="main-article" onClick={onClick}>
             <div className="main-article__img">
-                <img src={image} alt="изображение новости"/>
+                <img src={image} alt="изображение новости" />
             </div>
             <div className="main-article__content">
                 <h4 className="main-article__category">{category}</h4>
@@ -22,7 +22,7 @@ const MainArticle: FC<Props> = ({ title, image, description, category, source, o
                 <span className="main-article__src">{source}</span>
             </div>
         </article>
-    )
-}
+    );
+};
 
-export default MainArticle
+export default MainArticle;

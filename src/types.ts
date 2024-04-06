@@ -43,6 +43,6 @@ export interface RelatedArticlesAPI {
     items: Article[];
 }
 
-export const beautifulDate = (date: string):string => {
-    return  new Date(date).toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' });
-}
+export const beautifulDate = (date: string): string => {
+    return new Date(date).toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' });
+};

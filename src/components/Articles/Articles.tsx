@@ -15,7 +15,9 @@ const Articles: FC<Props> = ({ articles, onArticleClick }) => {
             <div className="container grid">
                 <section className="articles__big-col">
                     {articles.items.slice(0, 3).map((item) => {
-                        const category = articles.categories.find((categoryItem) => categoryItem.id === item.category_id);
+                        const category = articles.categories.find(
+                            (categoryItem) => categoryItem.id === item.category_id,
+                        );
                         const source = articles.sources.find((sourceItem) => sourceItem.id === item.source_id);
                         return (
                             <MainArticle
@@ -27,7 +29,7 @@ const Articles: FC<Props> = ({ articles, onArticleClick }) => {
                                 source={source ? source.name : ''}
                                 onClick={() => onArticleClick(item.id)}
                             />
-                        )
+                        );
                     })}
                 </section>
                 <section className="articles__small-col">
@@ -41,12 +43,12 @@ const Articles: FC<Props> = ({ articles, onArticleClick }) => {
                                 source={source?.name || ''}
                                 onClick={() => onArticleClick(item.id)}
                             />
-                        )
+                        );
                     })}
                 </section>
             </div>
         </main>
-    )
+    );
 };
 
 export default Articles;

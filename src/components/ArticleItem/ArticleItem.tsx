@@ -15,21 +15,21 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
     const [articleItem, setArticleItem] = React.useState<ArticleItemAPI | null>(null);
     const [relatedArticles, setRelatedArticles] = React.useState<Article[] | null>(null);
 
-    React.useEffect( () => {
+    React.useEffect(() => {
         fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
-            .then(response => response.json())
+            .then((response) => response.json())
             .then((response: ArticleItemAPI) => {
                 setArticleItem(response);
             });
 
         fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`)
-            .then(response => response.json())
+            .then((response) => response.json())
             .then((response: RelatedArticlesAPI) => {
                 setRelatedArticles(response.items);
-            })
-    }, [id])
+            });
+    }, [id]);
 
-    if (articleItem === null || relatedArticles === null){
+    if (articleItem === null || relatedArticles === null) {
         return null;
     }
 
@@ -49,7 +49,7 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                             </div>
                         </div>
                     </section>
-                ) : null }
+                ) : null}
 
                 <div className="grid container article__main">
                     <div className="article__content">
@@ -58,14 +58,15 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                                 <h1 className="article__title">{articleItem.title}</h1>
 
                                 <div className="grid">
-                                    <span
-                                        className="article-category article__category">{articleItem.category.name}</span>
-                                    <span
-                                        className="article-date article__date">{beautifulDate(articleItem.date)}</span>
+                                    <span className="article-category article__category">
+                                        {articleItem.category.name}
+                                    </span>
+                                    <span className="article-date article__date">
+                                        {beautifulDate(articleItem.date)}
+                                    </span>
                                 </div>
                             </div>
                         )}
-
 
                         <p>{articleItem.text}</p>
                     </div>
@@ -75,7 +76,7 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                             const category = categories.find((categoryItem) => categoryItem.id === item.category_id);
                             const source = sources.find((sourceItem) => sourceItem.id === item.source_id);
 
-                            return(
+                            return (
                                 <RelatedSmallArticle
                                     key={item.id}
                                     title={item.title}
@@ -99,7 +100,7 @@ export const ArticleItem: FC<Props> = ({ id, sources, categories, onArticleClick
                             const category = categories.find((categoryItem) => categoryItem.id === item.category_id);
                             const source = sources.find((sourceItem) => sourceItem.id === item.source_id);
 
-                            return(
+                            return (
                                 <SingleLineTitleArticle
                                     key={item.id}
                                     title={item.title}
