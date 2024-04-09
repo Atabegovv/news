@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { HashRouter as Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import Articles from '../Articles/Articles';
 import { ArticleItem } from '../ArticleItem/ArticleItem';

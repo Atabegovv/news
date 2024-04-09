@@ -4,6 +4,7 @@ import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle'
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
 import { Article, ArticleItemAPI, beautifulDate, Category, RelatedArticlesAPI, Source } from '../../types';
 import { useParams } from 'react-router-dom';
+import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
 
 export const ArticleItem: FC = () => {
     const { id }: { id?: string } = useParams();
@@ -38,6 +39,18 @@ export const ArticleItem: FC = () => {
         return null;
     }
 
+    const renderArticleItemInfo = (articleItem: ArticleItemAPI): React.ReactElement => {
+        return (
+            <ArticleItemInfo
+                categoryName={articleItem.category.name}
+                date={beautifulDate(articleItem.date)}
+                sourceLink={articleItem.link}
+                sourceName={articleItem.source?.name}
+                author={articleItem.author}
+            />
+        );
+    };
+
     return (
         <section className="article-page">
             <article className="article">
@@ -48,10 +61,7 @@ export const ArticleItem: FC = () => {
                                 <h1 className="article__hero-title">{articleItem.title}</h1>
                             </div>
 
-                            <div className="grid">
-                                <span className="article-category article__category">{articleItem.category.name}</span>
-                                <span className="article-date article__date">{beautifulDate(articleItem.date)}</span>
-                            </div>
+                            {renderArticleItemInfo(articleItem)}
                         </div>
                     </section>
                 ) : null}
@@ -62,14 +72,7 @@ export const ArticleItem: FC = () => {
                             <div className="article__title-container">
                                 <h1 className="article__title">{articleItem.title}</h1>
 
-                                <div className="grid">
-                                    <span className="article-category article__category">
-                                        {articleItem.category.name}
-                                    </span>
-                                    <span className="article-date article__date">
-                                        {beautifulDate(articleItem.date)}
-                                    </span>
-                                </div>
+                                {renderArticleItemInfo(articleItem)}
                             </div>
                         )}
 
