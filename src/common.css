@@ -9,7 +9,7 @@
     --container-width: 1445px;
 }
 
-* {
+*:not(svg *) {
     all: unset;
     list-style: none;
     display: revert;
