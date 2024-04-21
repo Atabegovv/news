@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -17,16 +18,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import ArticleIcon from '@mui/icons-material/Article';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
-import { CardActionArea } from '@mui/material';
-import Grid from '@mui/material/Grid';
 
-// interface Props {
-//     children: React.ReactNode;
-// }
+interface Props {
+    children: React.ReactNode;
+}
 
 const drawerWidth = 300;
 
@@ -97,7 +93,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 }));
 
-export const AdminPage: FC = () => {
+export const AdminPage: FC<Props> = ({ children }) => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -139,59 +135,38 @@ export const AdminPage: FC = () => {
                         </IconButton>
                     </DrawerHeader>
                     <Divider />
-                    <List>
-                        {['Партнерские статии'].map((text, index) => (
-                            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? 'initial' : 'center',
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
+                    <Link to="/admin">
+                        <List>
+                            {['Партнерские статии'].map((text, index) => (
+                                <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                                    <ListItemButton
                                         sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : 'auto',
-                                            justifyContent: 'center',
+                                            minHeight: 48,
+                                            justifyContent: open ? 'initial' : 'center',
+                                            px: 2.5,
                                         }}
                                     >
-                                        {index % 2 === 0 ? <ArticleIcon /> : <MailIcon />}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </List>
+                                        <ListItemIcon
+                                            sx={{
+                                                minWidth: 0,
+                                                mr: open ? 3 : 'auto',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            {index % 2 === 0 ? <ArticleIcon /> : <MailIcon />}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Link>
                     <Divider />
                 </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
 
-                    <Grid container spacing={2}>
-                        {[1, 2, 3, 4].map((item) => (
-                            <Grid item key={item}>
-                                <Card>
-                                    <CardActionArea>
-                                        <CardMedia
-                                            component="img"
-                                            image="https://placehold.co/600x400?text=Hello+World"
-                                            alt="green iguana"
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Lizard
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                species, ranging across all continents except Antarctica
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    {children}
                 </Box>
             </Box>
         </>

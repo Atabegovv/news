@@ -5,6 +5,8 @@ import { ArticleItem } from '../ArticleItem/ArticleItem';
 import '../../common.css';
 import { Page } from '../Page/Page';
 import { AdminPage } from '../AdminPage/AdminPage';
+import { AdminArticles } from '../AdminArticles/AdminArticles';
+import { AdminArticleItem } from '../AdminArticleItem/AdminArticleItem';
 
 const App: FC = () => {
     const { pathname } = useLocation();
@@ -16,8 +18,20 @@ const App: FC = () => {
     return (
         <main>
             <Switch>
-                <Route path="/admin">
-                    <AdminPage />
+                <Route path="/admin" exact>
+                    <AdminPage>
+                        <AdminArticles />
+                    </AdminPage>
+                </Route>
+                <Route path="/admin/create">
+                    <AdminPage>
+                        <AdminArticleItem />
+                    </AdminPage>
+                </Route>
+                <Route path="/admin/edit/:id">
+                    <AdminPage>
+                        <AdminArticleItem />
+                    </AdminPage>
                 </Route>
                 <Route path="/article/:id">
                     <Page>
