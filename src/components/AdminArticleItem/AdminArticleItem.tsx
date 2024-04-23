@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -14,10 +14,19 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { getErrors, getImage } from './helpers';
+import Snackbar from '@mui/material/Snackbar';
 import { InputErrors, InputName, InputRefs, InputValues } from './types';
+import {
+    createPartnerArticle,
+    deletePartnerArticle,
+    getPartnerArticle,
+    updatePartnerArticle,
+    uploadFile,
+} from '../../api';
 
 export const AdminArticleItem: FC = () => {
     const { id }: { id?: string } = useParams();
+    const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,6 +34,9 @@ export const AdminArticleItem: FC = () => {
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const closeSnackbar = () => {
+        setSnackbarMessage(null);
     };
 
     const inputRefs: InputRefs = {
@@ -34,7 +46,6 @@ export const AdminArticleItem: FC = () => {
         text: useRef<HTMLTextAreaElement>(),
         image: useRef<HTMLInputElement>(),
     };
-    const [inputFile, setInputFile] = useState<File | null>(null);
     const [inputErrors, setInputErrors] = useState<InputErrors>({
         'company-name': '',
         title: '',
@@ -59,6 +70,19 @@ export const AdminArticleItem: FC = () => {
             [name]: value,
         });
     };
+    const deleteArticle = async () => {
+        if (!id) {
+            return;
+        }
+
+        deletePartnerArticle(id)
+            .then(() => {
+                setSnackbarMessage('✅ Статья удалена');
+            })
+            .catch((error) => {
+                setSnackbarMessage(`❌ ${error.message}`);
+            });
+    };
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -66,11 +90,7 @@ export const AdminArticleItem: FC = () => {
         const data = new FormData();
 
         Object.entries(inputValues).forEach(([name, value]) => {
-            if (name === 'image') {
-                data.append(name, inputFile || new File([], ''));
-            } else {
-                data.append(name, value);
-            }
+            data.append(name, value);
         });
 
         // 2. Проверить данные
@@ -95,13 +115,26 @@ export const AdminArticleItem: FC = () => {
         }
 
         // 4. Если все ок, отправить данные
-        fetch('https://httpbin.org/post', {
-            method: 'POST',
-            body: data,
-        });
+        if (id) {
+            updatePartnerArticle(id, inputValues)
+                .then(() => {
+                    setSnackbarMessage('✅ Статья обновлена');
+                })
+                .catch((error) => {
+                    setSnackbarMessage(`❌ ${error.message}`);
+                });
+        } else {
+            createPartnerArticle(inputValues)
+                .then(() => {
+                    setSnackbarMessage('✅ Статья создана');
+                })
+                .catch((error) => {
+                    setSnackbarMessage(`❌ ${error.message}`);
+                });
+        }
     };
 
-    const showFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const showFile = async (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.currentTarget.files;
 
         if (files === null || !files.length) {
@@ -114,22 +147,53 @@ export const AdminArticleItem: FC = () => {
             return;
         }
 
-        setInputFile(file);
+        const image = await getImage(file);
 
-        getImage(file).then((image) => {
+        if (image.width < 200 || image.height < 200) {
+            setInputErrors({
+                ...inputErrors,
+                image: 'Изображение должно быть минимум 200×200',
+            });
+
+            return;
+        }
+
+        try {
+            const url = await uploadFile(file);
+
             setInputValues({
                 ...inputValues,
-                image: image.src,
+                image: url,
             });
-        });
+        } catch (error: any) {
+            setSnackbarMessage(`❌ ${error.message}`);
+        }
     };
+
+    useEffect(() => {
+        if (!id) {
+            return;
+        }
+
+        (async () => {
+            const data = await getPartnerArticle(id);
+
+            setInputValues({
+                'company-name': data['company-name'],
+                title: data.title,
+                description: data.description,
+                text: data.text,
+                image: data.image,
+            });
+        })();
+    }, [id]);
 
     return (
         <form noValidate onSubmit={onSubmit}>
             <Grid container spacing={2} sx={{ mb: 3 }}>
                 <Grid item xs={9}>
                     <Typography variant="h4" gutterBottom>
-                        {id ? 'Редактирование статьи «Как мыть руки правильно»' : 'Новая статья'}
+                        {id ? `Редактирование статьи «${inputValues.title}»` : 'Новая статья'}
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>
@@ -160,7 +224,7 @@ export const AdminArticleItem: FC = () => {
                                     onClose={handleClose}
                                 >
                                     <MenuItem onClick={handleClose}>
-                                        <Button variant="outlined" color="error">
+                                        <Button variant="outlined" onClick={deleteArticle} color="error">
                                             Удалить статью
                                         </Button>
                                     </MenuItem>
@@ -254,6 +318,13 @@ export const AdminArticleItem: FC = () => {
                     </Card>
                 </Grid>
             </Grid>
+
+            <Snackbar
+                open={typeof snackbarMessage === 'string'}
+                autoHideDuration={6000}
+                onClose={closeSnackbar}
+                message={snackbarMessage}
+            />
         </form>
     );
 };

@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import App from './components/App/App';
 import './common.css';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { initializeAPI } from './api';
+
+initializeAPI();
 
 const container: any = document.getElementById('root');
 const root = createRoot(container);

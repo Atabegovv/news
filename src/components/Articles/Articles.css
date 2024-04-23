@@ -11,3 +11,7 @@
     flex-direction: column;
     gap: 35px;
 }
+
+.articles__partner-article {
+    margin: 50px 0;
+}

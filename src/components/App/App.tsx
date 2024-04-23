@@ -16,7 +16,7 @@ const App: FC = () => {
     }, [pathname]);
 
     return (
-        <main>
+        <>
             <Switch>
                 <Route path="/admin" exact>
                     <AdminPage>
@@ -49,7 +49,7 @@ const App: FC = () => {
                     </Page>
                 </Route>
             </Switch>
-        </main>
+        </>
     );
 };
 

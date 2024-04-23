@@ -5,6 +5,7 @@ import SmallArticle from '../SmallArticle/SmallArticle';
 import './Articles.css';
 import { NewsAPI } from '../../types';
 import { categoryIds } from '../../utils';
+import { PartnerArticle } from '../PartnerArticle/PartnerArticle';
 
 export const Articles: FC = () => {
     const { categoryId = 'index' }: { categoryId?: string } = useParams();
@@ -24,7 +25,7 @@ export const Articles: FC = () => {
     }, [categoryId]);
 
     return (
-        <main className="articles main">
+        <section className="articles main">
             <div className="container grid">
                 <section className="articles__big-col">
                     {articles.items.slice(0, 3).map((item) => {
@@ -60,7 +61,10 @@ export const Articles: FC = () => {
                     })}
                 </section>
             </div>
-        </main>
+            <div className="articles__partner-article">
+                <PartnerArticle />
+            </div>
+        </section>
     );
 };
 
