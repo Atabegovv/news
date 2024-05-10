@@ -4,7 +4,7 @@ import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle'
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
 import { Article, ArticleItemAPI, beautifulDate, Category, RelatedArticlesAPI, Source } from '../../types';
 import { useParams } from 'react-router-dom';
-import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
+import { ArticleItemInfo } from './ArticleItemInfo/ArticleItemInfo';
 
 export const ArticleItem: FC = () => {
     const { id }: { id?: string } = useParams();

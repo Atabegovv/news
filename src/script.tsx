@@ -4,13 +4,17 @@ import App from './components/App/App';
 import './common.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { initializeAPI } from './api';
+import { AuthContextProvider } from './features/auth/AuthContextProvider';
 
-initializeAPI();
+const firebaseApp = initializeAPI();
 
 const container: any = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-    <Router>
-        <App />
-    </Router>,
+    <AuthContextProvider firebaseApp={firebaseApp}>
+        <Router>
+            <App />
+        </Router>
+        ,
+    </AuthContextProvider>,
 );
