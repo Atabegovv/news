@@ -15,6 +15,5 @@ root.render(
         <Router>
             <App />
         </Router>
-        ,
     </AuthContextProvider>,
 );

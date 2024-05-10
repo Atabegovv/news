@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -19,6 +19,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import ArticleIcon from '@mui/icons-material/Article';
 import { Typography } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuthContext } from '../../features/auth/AuthContextProvider';
 
 interface Props {
     children: React.ReactNode;
@@ -105,6 +107,13 @@ export const AdminPage: FC<Props> = ({ children }) => {
         setOpen(false);
     };
 
+    const { isAuthenticated, logOut } = useAuthContext();
+    const history = useHistory();
+    const onLogOut = () => {
+        logOut();
+        history.push('/admin');
+    };
+
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -123,9 +132,14 @@ export const AdminPage: FC<Props> = ({ children }) => {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" noWrap component="div">
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             Админ панель
                         </Typography>
+                        {isAuthenticated && (
+                            <IconButton color="inherit" onClick={onLogOut}>
+                                <LogoutIcon />
+                            </IconButton>
+                        )}
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
