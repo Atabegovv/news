@@ -1,44 +1,42 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
-import logo from '../../images/logo.svg';
-import { categoryNames } from '../../utils';
+import { categoryTitles } from '../../utils';
+import classNames from 'classnames';
 
 interface Props {
     className?: string;
 }
-const Navigation: FC<Props> = ({ className = '' }) => {
+
+interface NavigationItemProps {
+    title?: string;
+    name?: string;
+}
+
+const NavigationItem: FC<NavigationItemProps> = ({ title, name = '' }) => {
     return (
-        <nav className={`nav grid ${className}`}>
-            <NavLink to="/" className="nav__logo">
-                <img className="nav__logo-img" src={logo} alt="логотип" />
+        <li className="navigation__item" key={name}>
+            <NavLink
+                to={`/${name}`}
+                className="navigation__link"
+                activeClassName="navigation__link--active"
+                isActive={(match) => match?.isExact || false}
+            >
+                {title}
             </NavLink>
-            <ul className="nav__list">
-                {['index', 'fashion', 'technologies', 'sport', 'other'].map((item) => {
-                    return (
-                        <li className="nav__item" key={item}>
-                            <NavLink
-                                to={`/${item}`}
-                                activeClassName="nav__link--active"
-                                className="nav__link"
-                                isActive={(match) => {
-                                    if (match) {
-                                        return true;
-                                    }
-                                    if (match === 'index' && location.pathname === '/') {
-                                        return true;
-                                    }
-                                    return false;
-                                }}
-                            >
-                                {categoryNames[item]}
-                            </NavLink>
-                        </li>
-                    );
+        </li>
+    );
+};
+
+export const Navigation: FC<Props> = ({ className = '' }) => {
+    return (
+        <nav className={classNames('navigation', className)}>
+            <ul className="navigation__list">
+                <NavigationItem title="Новости" />
+                {Object.entries(categoryTitles).map(([name, title]) => {
+                    return <NavigationItem key={name} name={name} title={title} />;
                 })}
             </ul>
         </nav>
     );
 };
-
-export default Navigation;

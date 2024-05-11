@@ -1,5 +1,9 @@
-.header {
-    padding: 35px 0 130px;
+.header__container {
+    height: 76px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: var(--grid-gap);
 }
 
 .articles__big-col {
@@ -17,30 +21,21 @@
 }
 
 .footer {
-    margin-top: 135px;
-    padding: 30px 0 50px;
-    background-color: var(--color-text);
-}
-
-.footer__nav .nav__logo {
-    grid-column: span 2;
-}
-
-.footer__nav .nav__link {
+    font-size: 16px;
+    background-color: var(--color-primary);
     color: var(--color-white);
 }
 
-.footer__nav .nav__link--active,
-.footer__nav .nav__link:hover {
-    color: var(--color-accent);
-}
-
-.footer__col {
+.footer__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 500;
-    color: var(--color-grey);
+    gap: var(--grid-gap);
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255 255 255 / 25%);
+}
+
+.footer__link {
+    display: block;
+    padding: 30px 0 80px;
 }

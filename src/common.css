@@ -1,12 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap");
 
 :root {
-    --color-accent: #f53;
-    --color-text: #262a2f;
-    --color-grey: #868686;
+    --color-accent: #0083fc;
+    --color-primary: #262a2f;
     --color-white: #fff;
-    --grid-col-width: 100px;
-    --container-width: 1445px;
+    --color-black: #000;
+    --color-grey: #a3a3a3;
+    --bg-zero: var(--color-white);
+    --bg-primary: var(--color-white);
+    --foreground-primary: var(--color-primary);
+    --container-width: 980px;
+    --container-padding: 20px;
+    --grid-col-width: 60px;
+    --grid-gap: 20px;
 }
 
 *:not(svg *) {
@@ -28,22 +34,25 @@ img {
 }
 
 body {
+    background-color: var(--color-white);
     font-family: Rubik, sans-serif;
-    font-size: 22px;
+    font-size: 14px;
+    line-height: 20px;
     font-weight: 400;
-    min-width: var(--container-width);
+    color: var(--foreground-primary);
+    min-width: calc(var(--container-width) + 2 * var(--container-padding));
 }
 
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 5px;
+    padding: 0 var(--container-padding);
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(12, var(--grid-col-width));
-    gap: 20px;
+    gap: var(--grid-gap);
 }
 
 .line-limit {
