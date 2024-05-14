@@ -15,6 +15,14 @@
     --grid-gap: 20px;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-zero: #131517;
+        --bg-primary: var(--color-primary);
+        --foreground-primary: var(--color-white);
+    }
+}
+
 *:not(svg *) {
     all: unset;
     list-style: none;
@@ -34,7 +42,7 @@ img {
 }
 
 body {
-    background-color: var(--color-white);
+    background-color: var(--bg-zero);
     font-family: Rubik, sans-serif;
     font-size: 14px;
     line-height: 20px;
