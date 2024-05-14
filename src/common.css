@@ -6,21 +6,23 @@
     --color-white: #fff;
     --color-black: #000;
     --color-grey: #a3a3a3;
-    --bg-zero: var(--color-white);
-    --bg-primary: var(--color-white);
-    --foreground-primary: var(--color-primary);
     --container-width: 980px;
     --container-padding: 20px;
     --grid-col-width: 60px;
     --grid-gap: 20px;
+    --bg-zero: var(--color-white);
+    --bg-primary: var(--color-white);
+    --foreground-primary: var(--color-primary);
+
+    color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-zero: #131517;
-        --bg-primary: var(--color-primary);
-        --foreground-primary: var(--color-white);
-    }
+[scheme="dark"] {
+    --bg-zero: #131517;
+    --bg-primary: var(--color-primary);
+    --foreground-primary: var(--color-white);
+
+    color-scheme: dark;
 }
 
 *:not(svg *) {

@@ -6,6 +6,10 @@
     gap: var(--grid-gap);
 }
 
+.header__controls {
+    margin-left: auto;
+}
+
 .articles__big-col {
     grid-column: span 9;
     display: flex;
