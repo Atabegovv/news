@@ -32,6 +32,10 @@
     box-sizing: border-box;
 }
 
+.--prevent-scroll {
+    overflow: hidden;
+}
+
 a {
     display: block;
     text-underline: none;

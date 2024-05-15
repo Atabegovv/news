@@ -1,15 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import './Page.css';
 import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
 import { ColorSchemeSwitcher } from '../ColorSchemeSwitcher/ColorSchemeSwitcher';
+import { EmailModal } from '../EmailModal/EmailModal';
 
 interface Props {
     children: React.ReactNode;
 }
+
+const LS_EMAIL_SHOWN_KEY = 'newsfeed:email_modal_shown';
+
 export const Page: FC<Props> = ({ children }) => {
+    const [emailModalShown, setEmailModalShown] = useState(!localStorage.getItem(LS_EMAIL_SHOWN_KEY));
     return (
         <>
+            {emailModalShown && (
+                <EmailModal
+                    onClose={() => {
+                        localStorage.setItem(LS_EMAIL_SHOWN_KEY, 'true');
+                        setEmailModalShown(false);
+                    }}
+                ></EmailModal>
+            )}
             <header className="header">
                 <div className="container header__container">
                     <Logo />
