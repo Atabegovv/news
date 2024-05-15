@@ -1,0 +1,7 @@
+.dropdown {
+    position: absolute;
+    background: var(--bg-zero);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+    border-radius: 12px;
+    padding: 8px 0;
+}

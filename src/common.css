@@ -13,6 +13,7 @@
     --bg-zero: var(--color-white);
     --bg-primary: var(--color-white);
     --foreground-primary: var(--color-primary);
+    --color-scheme-switcher-border: var(--color-grey);
 
     color-scheme: light;
 }
@@ -21,6 +22,7 @@
     --bg-zero: #131517;
     --bg-primary: var(--color-primary);
     --foreground-primary: var(--color-white);
+    --color-scheme-switcher-border: transparent;
 
     color-scheme: dark;
 }
